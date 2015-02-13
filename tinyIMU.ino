@@ -44,11 +44,11 @@ int16_t ax, ay, az, gx, gy, gz;
 
 #include <ros.h>
 #include <ros/time.h>
-#include <axon_msgs/tinyVector.h>
-#include <axon_msgs/tinyImu.h>
+#include <tiny_msgs/tinyVector.h>
+#include <tiny_msgs/tinyIMU.h>
 ros::NodeHandle  nh;
 
-axon_msgs::tinyImu imu_msg;
+tiny_msgs::tinyIMU imu_msg;
 ros::Publisher imu_pub("tinyImu", &imu_msg);
 
 uint32_t seq;
@@ -73,9 +73,9 @@ void loop()
   seq++;
   accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 
-  imu_msg.Header.stamp = nh.now();
-  imu_msg.Header.frame_id = 0;
-  imu_msg.Header.seq = seq;
+  imu_msg.header.stamp = nh.now();
+  imu_msg.header.frame_id = 0;
+  imu_msg.header.seq = seq;
 
   imu_msg.accel.x = ax;
   imu_msg.accel.y = ay;
